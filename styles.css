@@ -1,0 +1,43 @@
+/* Class-based styles */
+
+.flex-box {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-box-charts {
+  display: flex;
+  justify-content: center;
+}
+
+#chart-paragraph{
+  text-indent: 30px;
+}
+
+.navbar {
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  
+  .navbar li {
+    display: inline-block;
+  }
+  
+  .navbar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+  }
+  
+  .navbar a:hover {
+    background-color: #555;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: center; /* Adjust this property as needed */
+    align-items: center; /* Adjust this property as needed */
+}
