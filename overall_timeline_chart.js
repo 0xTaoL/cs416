@@ -1,9 +1,7 @@
 async function init_full_timeline(
   svg_width,
   svg_height,
-  start_year = 2013,
-  end_year = 2023,
-  svg_id = "#sp500-performance-chart-full"
+  svg_id
 ) {
   const width = svg_width;
   const height = svg_height;
@@ -67,7 +65,7 @@ async function init_full_timeline(
     .select(svg_id)
     .append("div")
     .attr("class", "tooltip")
-    .style("opacity", 0);
+    .style("opacity", 50);
 
   // Step 8: Append the data points
   svg
@@ -90,7 +88,7 @@ async function init_full_timeline(
         .style("top", event.pageY - 28 + "px");
     })
     .on("mouseout", () => {
-      tooltip.transition().duration(500).style("opacity", 0);
+      tooltip.transition().duration(500).style("opacity", 50);
     });
 
   // Step 9: Create the line generator

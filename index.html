@@ -54,7 +54,7 @@
     <div class="flex-box">
       <h2 id="chart-header"></h2>
     </div>
-    <div class="flex-box-charts">
+    <div class="flex-box">
       <svg id="sp500-performance-chart" width="1200" height="600"></svg>
     </div>
     <br />
@@ -69,7 +69,7 @@
     </div>
     <script
       src="overall_timeline_chart.js"
-      onload="init_full_timeline(svg_width,svg_height,undefined,undefined,svg_id);
+      onload="init_full_timeline(svg_width,svg_height,svg_id);
       updateGraphHeader(_last_10_years_title);
       loadGraphDescription(_last_10_years_paragraph);"
     ></script>
