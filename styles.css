@@ -37,6 +37,7 @@
   justify-content: center; /* Adjust this property as needed */
   align-items: center; /* Adjust this property as needed */
 }
+
 .tooltip {
   position: absolute;
   padding: 5px;

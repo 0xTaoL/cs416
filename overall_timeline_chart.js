@@ -62,7 +62,7 @@ async function init_full_timeline(
 
   // Step 7: Create tooltip
   const tooltip = d3
-    .select(svg_id)
+    .select("body")
     .append("div")
     .attr("class", "tooltip")
     .style("opacity", 50);
@@ -82,7 +82,7 @@ async function init_full_timeline(
       tooltip.transition().duration(200).style("opacity", 0.9);
       tooltip
         .html(
-          `${d3.timeFormat("%b %Y")(d.key)}<br/>S&P 500: ${d.value.toFixed(2)}`
+          `${d3.timeFormat("%b %Y")(d.key)}<br/>S&P 500: $${d.value.toFixed(2)}`
         )
         .style("left", event.pageX + 10 + "px")
         .style("top", event.pageY - 28 + "px");
