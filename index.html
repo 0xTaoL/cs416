@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2013 - Present S&P 500 Bear Markets</title>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>S&P 500 Bear Markets (2013 - 2023)</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <link rel="stylesheet" href="styles.css" />
@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="flex-box">
-      <h1>2013 - Present S&P 500 Bear Markets</h1>
+      <h1>S&P 500 Bear Markets (2013 - 2023)</h1>
     </div>
     <div class="flex-box">
       <ul class="navbar">
@@ -40,7 +40,7 @@
       </ul>
     </div>
     <br />
-    <div class="flex-box">
+    <!-- <div class="flex-box">
       <label>Start Year&nbsp;</label>
       <select id="start-years">
         <option value="">-- Select Year --</option></select
@@ -50,17 +50,16 @@
         <option value="">-- Select Year --</option></select
       >&nbsp;
       <button>Reset Chart</button>
-    </div>
+    </div> -->
     <div class="flex-box">
       <h2 id="chart-header"></h2>
     </div>
     <div class="flex-box-charts">
-      <svg id="sp500-performance-chart" width="800" height="500"></svg>
+      <svg id="sp500-performance-chart" width="1200" height="600"></svg>
     </div>
     <br />
-    <hr />
     <div class="flex-box">
-      <p id="chart-paragraph"></p>
+      <p id="chart-description"></p>
     </div>
     <div class="flex-container">
       <p>Sources:&nbsp;</p>
@@ -70,7 +69,9 @@
     </div>
     <script
       src="overall_timeline_chart.js"
-      onload="init_full_timeline(svg_width,svg_height,undefined,undefined,svg_id);updateGraphHeader(_last_10_years_title);loadPElement(_last_10_years_paragraph);"
+      onload="init_full_timeline(svg_width,svg_height,undefined,undefined,svg_id);
+      updateGraphHeader(_last_10_years_title);
+      loadGraphDescription(_last_10_years_paragraph);"
     ></script>
   </body>
 </html>

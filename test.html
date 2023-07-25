@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S&P 500 Performance Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+      /* Add your custom CSS styling here, if needed */
+      .tooltip {
+        position: absolute;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 5px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chart-container"></div>
+
+    <script>
+      // Step 1: Define the container and chart dimensions
+      const containerWidth = 800;
+      const containerHeight = 400;
+      const margin = { top: 20, right: 30, bottom: 30, left: 60 };
+      const width = containerWidth - margin.left - margin.right;
+      const height = containerHeight - margin.top - margin.bottom;
+
+      // Step 2: Create an SVG element within the container
+      const svg = d3
+        .select("#chart-container")
+        .append("svg")
+        .attr("width", containerWidth)
+        .attr("height", containerHeight)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      // Step 3: Read the CSV data
+      d3.csv(
+        "https://raw.githubusercontent.com/0xTaoL/cs416/main/sp500_index.csv"
+      )
+        .then((data) => {
+          // Step 4: Parse dates
+          const parseDate = d3.utcParse("%Y-%m-%d");
+          data.forEach((d) => {
+            d.Date = parseDate(d.Date);
+            d.SP500 = +d.SP500;
+          });
+
+          // Step 5: Group data by the first day of each month
+          const monthlyData = Array.from(
+            d3.group(data, (d) => d3.timeMonth(d.Date)),
+            ([key, values]) => {
+              return {
+                key: new Date(key),
+                value: d3.mean(values, (d) => d.SP500),
+              };
+            }
+          );
+
+          // Step 6: Create scales and axes
+          const xScale = d3
+            .scaleTime()
+            .domain(d3.extent(monthlyData, (d) => d.key))
+            .range([0, width]);
+
+          const yScale = d3
+            .scaleLinear()
+            .domain([
+              d3.min(monthlyData, (d) => d.value),
+              d3.max(monthlyData, (d) => d.value),
+            ])
+            .range([height, 0]);
+
+          const xAxis = d3.axisBottom(xScale);
+          const yAxis = d3.axisLeft(yScale);
+
+          svg
+            .append("g")
+            .attr("transform", `translate(0, ${height})`)
+            .call(xAxis);
+
+          svg.append("g").call(yAxis);
+
+          // Step 7: Create tooltip
+          const tooltip = d3
+            .select("#chart-container")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+          // Step 8: Append the data points
+          svg
+            .selectAll(".datapoint")
+            .data(monthlyData)
+            .enter()
+            .append("circle")
+            .attr("class", "datapoint")
+            .attr("cx", (d) => xScale(d.key))
+            .attr("cy", (d) => yScale(d.value))
+            .attr("r", 5)
+            .attr("fill", "steelblue")
+            .on("mouseover", (event, d) => {
+              tooltip.transition().duration(200).style("opacity", 0.9);
+              tooltip
+                .html(
+                  `${d3.timeFormat("%b %Y")(
+                    d.key
+                  )}<br/>S&P 500: ${d.value.toFixed(2)}`
+                )
+                .style("left", event.pageX + 10 + "px")
+                .style("top", event.pageY - 28 + "px");
+            })
+            .on("mouseout", () => {
+              tooltip.transition().duration(500).style("opacity", 0);
+            });
+
+          // Step 9: Create the line generator
+          const line = d3
+            .line()
+            .x((d) => xScale(d.key))
+            .y((d) => yScale(d.value));
+
+          // Step 10: Append the line to the chart
+          svg
+            .append("path")
+            .datum(monthlyData)
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 2)
+            .attr("d", line);
+        })
+        .catch((error) => {
+          console.error("Error loading data:", error);
+        });
+    </script>
+  </body>
+</html>

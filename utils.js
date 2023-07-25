@@ -4,3 +4,10 @@ function updateGraphHeader(text) {
     h2Element.textContent = text;
   }
 }
+
+function loadGraphDescription(text) {
+  const pElement = document.getElementById("chart-description");
+  if (pElement) {
+    pElement.textContent = text;
+  }
+}
