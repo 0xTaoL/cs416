@@ -34,8 +34,8 @@
 
 .flex-container {
   display: flex;
-  justify-content: center; /* Adjust this property as needed */
-  align-items: center; /* Adjust this property as needed */
+  justify-content: center;
+  align-items: center;
 }
 
 .tooltip {

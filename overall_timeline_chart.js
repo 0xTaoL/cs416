@@ -39,7 +39,7 @@ async function init_full_timeline(
     }
   );
 
-  // Step 6: Create scales and axes
+  // Create scales and axes
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(monthlyData, (d) => d.key))
@@ -60,14 +60,14 @@ async function init_full_timeline(
 
   svg.append("g").call(yAxis);
 
-  // Step 7: Create tooltip
+  // Create tooltip
   const tooltip = d3
     .select("body")
     .append("div")
     .attr("class", "tooltip")
-    .style("opacity", 50);
+    .style("opacity", 0);
 
-  // Step 8: Append the data points
+  // Append the data points
   svg
     .selectAll(".datapoint")
     .data(monthlyData)
@@ -88,16 +88,16 @@ async function init_full_timeline(
         .style("top", event.pageY - 28 + "px");
     })
     .on("mouseout", () => {
-      tooltip.transition().duration(500).style("opacity", 50);
+      tooltip.transition().duration(500).style("opacity", 0);
     });
 
-  // Step 9: Create the line generator
+  // Create the line generator
   const line = d3
     .line()
     .x((d) => xScale(d.key))
     .y((d) => yScale(d.value));
 
-  // Step 10: Append the line to the chart
+  // Append the line to the chart
   svg
     .append("path")
     .datum(monthlyData)

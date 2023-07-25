@@ -23,34 +23,46 @@
     <div class="flex-box">
       <ul class="navbar">
         <li>
-          <a>1. 2015-2016 Selloff</a>
+          <a onclick="updateChart(svg_id, 1)">1. 2015-2016 Selloff</a>
         </li>
         <li>
-          <a>2. 2018 Crypto Crash</a>
+          <a onclick="updateChart(svg_id, 2)">2. 2018 Crypto Crash</a>
         </li>
         <li>
-          <a>3. 2020 Covid Crash</a>
+          <a onclick="updateChart(svg_id, 3)">3. 2020 Covid Crash</a>
         </li>
         <li>
-          <a>4. 2022 Market Decline</a>
+          <a onclick="updateChart(svg_id, 4)">4. 2022 Market Decline</a>
         </li>
         <li>
-          <a>5. Last 10 Years</a>
+          <a onclick="updateChart(svg_id, 5)">5. Last 10 Years</a>
         </li>
       </ul>
     </div>
     <br />
-    <!-- <div class="flex-box">
+    <div class="flex-box">
+      <label>Start Month&nbsp;</label>
+      <select id="start-month">
+        <option value="">-- Select Month --</option>
+      </select>
+      &nbsp;
       <label>Start Year&nbsp;</label>
-      <select id="start-years">
-        <option value="">-- Select Year --</option></select
-      >&nbsp;
+      <select id="start-year">
+        <option value="">-- Select Year --</option>
+      </select>
+      &nbsp;
+      <label>End Month&nbsp;</label>
+      <select id="end-month">
+        <option value="">-- Select Month --</option>
+      </select>
+      &nbsp;
       <label>End Year&nbsp;</label>
-      <select id="end-years">
-        <option value="">-- Select Year --</option></select
-      >&nbsp;
+      <select id="end-year">
+        <option value="">-- Select Year --</option>
+      </select>
+      &nbsp;
       <button>Reset Chart</button>
-    </div> -->
+    </div>
     <div class="flex-box">
       <h2 id="chart-header"></h2>
     </div>
@@ -69,9 +81,7 @@
     </div>
     <script
       src="overall_timeline_chart.js"
-      onload="init_full_timeline(svg_width,svg_height,svg_id);
-      updateGraphHeader(_last_10_years_title);
-      loadGraphDescription(_last_10_years_paragraph);"
+      onload="updateChart(svg_id, 1)"
     ></script>
   </body>
 </html>

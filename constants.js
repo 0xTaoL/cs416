@@ -19,7 +19,7 @@ const _last_10_years_paragraph =
 
 const _last_10_years_title = "The Last 10 Years";
 
-const _2016_selloff_title = "The 2016 Selloff";
+const _2016_selloff_title = "The 2015-2016 Selloff";
 
 const _2018_crypto_bubble_title = "The 2018 Crypto Bubble";
 
