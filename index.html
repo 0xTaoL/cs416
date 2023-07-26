@@ -8,7 +8,6 @@
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <link rel="stylesheet" href="styles.css" />
-    <script src="overall_timeline_chart.js"></script>
     <script src="2016_selloff.js"></script>
     <script src="2018_crypto.js"></script>
     <script src="2020_covid.js"></script>
@@ -41,27 +40,26 @@
     </div>
     <br />
     <div class="flex-box">
-      <label>Start Month&nbsp;</label>
-      <select id="start-month">
-        <option value="">-- Select Month --</option>
-      </select>
-      &nbsp;
-      <label>Start Year&nbsp;</label>
-      <select id="start-year">
-        <option value="">-- Select Year --</option>
-      </select>
-      &nbsp;
-      <label>End Month&nbsp;</label>
-      <select id="end-month">
-        <option value="">-- Select Month --</option>
-      </select>
-      &nbsp;
-      <label>End Year&nbsp;</label>
-      <select id="end-year">
-        <option value="">-- Select Year --</option>
-      </select>
-      &nbsp;
-      <button>Reset Chart</button>
+      <label for="start">Start date </label>
+      <input
+        type="month"
+        value="2023-06"
+        min="2023-06"
+        max="2023-06"
+        id="inputStartDate"
+        onchange="clearChart();qualityOverview();"
+      />
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <label for="end">End date </label>
+      <input
+        type="month"
+        name="end_date"
+        value="2023-07"
+        min="2023-07"
+        max="2023-07"
+        id="inputEndDate"
+        onchange="clearChart();qualityOverview();"
+      />
     </div>
     <div class="flex-box">
       <h2 id="chart-header"></h2>
