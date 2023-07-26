@@ -12,10 +12,10 @@ async function init_2022decline_timeline(svg_width, svg_height, svg_id) {
   // Parse the data into appropriate types
   const parseDate = d3.utcParse("%Y-%m-%d");
 
-  data = data.filter((d) => {
-    const date = parseDate(d.Date);
-    return date >= new Date("2021-12-01") && date <= new Date("2023-02-28");
-  });
+  // data = data.filter((d) => {
+  //   const date = parseDate(d.Date);
+  //   return date >= new Date("2021-12-01") && date <= new Date("2023-02-28");
+  // });
 
   data.forEach((d) => {
     d.Date = parseDate(d.Date);
@@ -25,12 +25,18 @@ async function init_2022decline_timeline(svg_width, svg_height, svg_id) {
   const monthlyData = Array.from(
     d3.group(data, (d) => d3.timeMonth(d.Date)),
     ([key, values]) => {
-      return {
-        key: new Date(key),
-        value: d3.mean(values, (d) => d.SP500),
-      };
+      const date = new Date(key);
+      const startDate = new Date("2021-12-01");
+      const endDate = new Date("2023-02-28");
+
+      if (date >= startDate && date <= endDate) {
+        return {
+          key: date,
+          value: d3.mean(values, (d) => d.SP500),
+        };
+      }
     }
-  );
+  ).filter(Boolean); // Remove any undefined entries
 
   // Create the SVG element
   const svg = d3

@@ -1,8 +1,4 @@
-async function init_full_timeline(
-  svg_width,
-  svg_height,
-  svg_id
-) {
+async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
   const width = svg_width;
   const height = svg_height;
   const margin = { top: 20, right: 30, bottom: 30, left: 60 };
@@ -21,14 +17,6 @@ async function init_full_timeline(
     d.SP500 = +d.SP500;
   });
 
-  // Create the SVG element
-  const svg = d3
-    .select(svg_id)
-    .append("g")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("transform", `translate(${margin.left},${margin.top})`);
-
   const monthlyData = Array.from(
     d3.group(data, (d) => d3.timeMonth(d.Date)),
     ([key, values]) => {
@@ -38,6 +26,14 @@ async function init_full_timeline(
       };
     }
   );
+
+  // Create the SVG element
+  const svg = d3
+    .select(svg_id)
+    .append("g")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
   // Create scales and axes
   const xScale = d3

@@ -9,13 +9,13 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
   let data = await d3.csv(
     `https://raw.githubusercontent.com/0xTaoL/cs416/${filePath}`
   );
-  // Parse the data into appropriate types  
+  // Parse the data into appropriate types
   const parseDate = d3.utcParse("%Y-%m-%d");
 
-  data = data.filter((d) => {
-    const date = parseDate(d.Date);
-    return date >= new Date("2015-06-01") && date <= new Date("2016-06-31");
-  });
+  // data = data.filter((d) => {
+  //   const date = parseDate(d.Date);
+  //   return date >= new Date("2015-06-01") && date <= new Date("2016-06-31");
+  // });
 
   data.forEach((d) => {
     d.Date = parseDate(d.Date);
@@ -25,12 +25,18 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
   const monthlyData = Array.from(
     d3.group(data, (d) => d3.timeMonth(d.Date)),
     ([key, values]) => {
-      return {
-        key: new Date(key),
-        value: d3.mean(values, (d) => d.SP500),
-      };
+      const date = new Date(key);
+      const startDate = new Date("2015-06-01");
+      const endDate = new Date("2016-06-30");
+
+      if (date >= startDate && date <= endDate) {
+        return {
+          key: date,
+          value: d3.mean(values, (d) => d.SP500),
+        };
+      }
     }
-  );
+  ).filter(Boolean); // Remove any undefined entries
 
   // Create the SVG element
   const svg = d3
