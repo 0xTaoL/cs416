@@ -59,7 +59,13 @@ function updateDatePicker(slide_id) {
   }
 }
 
+let current_slide = 1;
+
 function updateChart(svg_id, slide_id) {
+  console.log(`Updating chart to slide ${slide_id}`);
+  if (slide_id != 6) {
+    current_slide = slide_id;
+  }
   const svg = d3.select(svg_id);
   svg.selectAll("*").remove();
   switch (slide_id) {
