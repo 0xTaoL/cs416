@@ -47,7 +47,7 @@
       <svg id="sp500-performance-chart" width="1200" height="600"></svg>
     </div>
     <div class="flex-box">
-      <label for="start">Start date </label>
+      <label for="inputStartDate">Start date </label>
       <input
         type="month"
         value=""
@@ -57,10 +57,9 @@
         onchange="updateChart(svg_id, 6)"
       />
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <label for="end">End date </label>
+      <label for="inputEndDate">End date </label>
       <input
         type="month"
-        name="end_date"
         value=""
         min=""
         max=""
