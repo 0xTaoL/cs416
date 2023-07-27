@@ -13,7 +13,7 @@
     <script src="2020_covid.js"></script>
     <script src="2022_decline.js"></script>
     <script src="custom_timeline.js"></script>
-    <script src="utils.js"></script>
+    <script src="index.js"></script>
     <script src="constants.js"></script>
   </head>
   <body>
@@ -41,6 +41,12 @@
     </div>
     <br />
     <div class="flex-box">
+      <h2 id="chart-header"></h2>
+    </div>
+    <div class="flex-box">
+      <svg id="sp500-performance-chart" width="1200" height="600"></svg>
+    </div>
+    <div class="flex-box">
       <label for="start">Start date </label>
       <input
         type="month"
@@ -61,14 +67,10 @@
         id="inputEndDate"
         onchange="updateChart(svg_id, 6)"
       />
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <button onclick="updateChart(svg_id, current_slide)">Reset Chart</button>
     </div>
-    <div class="flex-box">
-      <h2 id="chart-header"></h2>
-    </div>
-    <div class="flex-box">
-      <svg id="sp500-performance-chart" width="1200" height="600"></svg>
-    </div>
+
     <br />
     <div class="flex-box">
       <p id="chart-description"></p>
@@ -84,9 +86,6 @@
         >List of stock market crashes and bear markets | Wikipedia</a
       >
     </div>
-    <script
-      src="past_decade.js"
-      onload="updateChart(svg_id, 1)"
-    ></script>
+    <script src="past_decade.js" onload="updateChart(svg_id, 1)"></script>
   </body>
 </html>
