@@ -88,8 +88,13 @@ function updateChart(svg_id, slide_id) {
       loadGraphDescription(_last_10_years_paragraph);
       init_full_timeline(svg_width, svg_height, svg_id);
       break;
+    case 6:
+      init_custom_timeline(svg_width, svg_height, svg_id);
+      break;
   }
-  updateDatePicker(slide_id);
+  if (slide_id !== 6) {
+    updateDatePicker(slide_id);
+  }
 }
 
 function convertToYYYYMMDDFirstDay(yyyy_mm) {

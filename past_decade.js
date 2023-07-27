@@ -10,7 +10,6 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
     `https://raw.githubusercontent.com/0xTaoL/cs416/${filePath}`
   );
   // Parse the data into appropriate types
-  data = data;
   const parseDate = d3.utcParse("%Y-%m-%d");
   data.forEach((d) => {
     d.Date = parseDate(d.Date);

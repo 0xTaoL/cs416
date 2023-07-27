@@ -12,6 +12,7 @@
     <script src="2018_crypto.js"></script>
     <script src="2020_covid.js"></script>
     <script src="2022_decline.js"></script>
+    <script src="custom_timeline.js"></script>
     <script src="utils.js"></script>
     <script src="constants.js"></script>
   </head>
@@ -43,22 +44,22 @@
       <label for="start">Start date </label>
       <input
         type="month"
-        value="2023-06"
-        min="2023-06"
-        max="2023-06"
+        value=""
+        min=""
+        max=""
         id="inputStartDate"
-        onchange="clearChart();qualityOverview();"
+        onchange="updateChart(svg_id, 6)"
       />
       &nbsp;&nbsp;&nbsp;&nbsp;
       <label for="end">End date </label>
       <input
         type="month"
         name="end_date"
-        value="2023-07"
-        min="2023-07"
-        max="2023-07"
+        value=""
+        min=""
+        max=""
         id="inputEndDate"
-        onchange="clearChart();qualityOverview();"
+        onchange="updateChart(svg_id, 6)"
       />
     </div>
     <div class="flex-box">
@@ -83,7 +84,7 @@
       >
     </div>
     <script
-      src="overall_timeline_chart.js"
+      src="past_decade.js"
       onload="updateChart(svg_id, 1)"
     ></script>
   </body>
