@@ -97,17 +97,6 @@ function updateChart(svg_id, slide_id) {
   }
 }
 
-function convertToYYYYMMDDFirstDay(yyyy_mm) {
-  return `${yyyy_mm}-01`;
-}
-
-function convertToYYYYMM(yyyy_mm_dd) {
-  const parts = yyyy_mm_dd.split("-");
-  const year = parts[0];
-  const month = parts[1];
-  return `${year}-${month}`;
-}
-
 function getLastDayOfMonth(yyyy, mm) {
   // Use the following month and day 0 to get the last day of the given month
   const nextMonth = parseInt(mm, 10) + 1;

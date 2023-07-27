@@ -12,11 +12,6 @@ async function init_2018crypto_timeline(svg_width, svg_height, svg_id) {
   // Parse the data into appropriate types
   const parseDate = d3.utcParse("%Y-%m-%d");
 
-  // data = data.filter((d) => {
-  //   const date = parseDate(d.Date);
-  //   return date >= new Date("2018-08-01") && date <= new Date("2019-01-31");
-  // });
-
   data.forEach((d) => {
     d.Date = parseDate(d.Date);
     d.SP500 = +d.SP500;

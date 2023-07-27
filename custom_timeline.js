@@ -18,21 +18,11 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
     d.SP500 = +d.SP500;
   });
 
-  const monthlyData = Array.from(
-    d3.group(data, (d) => d3.timeMonth(d.Date)),
-    ([key, values]) => {
-      const date = new Date(key);
-      const convertedStart = new Date(startInput);
-      const convertedEnd = new Date(convertToYYYYMMDDLastDay(endInput));
-
-      if (date >= convertedStart && date <= convertedEnd) {
-        return {
-          key: date,
-          value: d3.mean(values, (d) => d.SP500),
-        };
-      }
-    }
-  ).filter(Boolean); // Remove any undefined entries
+  const convertedStart = new Date(startInput);
+  const convertedEnd = new Date(convertToYYYYMMDDLastDay(endInput));
+  const filteredData = data.filter(
+    (d) => d.Date >= convertedStart && d.Date <= convertedEnd
+  );
 
   // Create the SVG element
   const svg = d3
@@ -45,14 +35,14 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
   // Create scales and axes
   const xScale = d3
     .scaleTime()
-    .domain(d3.extent(monthlyData, (d) => d.key))
+    .domain(d3.extent(filteredData, (d) => d.Date))
     .range([0, chartWidth]);
 
   const yScale = d3
     .scaleLinear()
     .domain([
-      d3.min(monthlyData, (d) => d.value),
-      d3.max(monthlyData, (d) => d.value),
+      d3.min(filteredData, (d) => d.SP500),
+      d3.max(filteredData, (d) => d.SP500),
     ])
     .range([chartHeight, 0]);
 
@@ -73,19 +63,19 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
   // Append the data points
   svg
     .selectAll(".datapoint")
-    .data(monthlyData)
+    .data(filteredData)
     .enter()
     .append("circle")
     .attr("class", "datapoint")
-    .attr("cx", (d) => xScale(d.key))
-    .attr("cy", (d) => yScale(d.value))
+    .attr("cx", (d) => xScale(d.Date))
+    .attr("cy", (d) => yScale(d.SP500))
     .attr("r", 5)
     .attr("fill", "steelblue")
     .on("mouseover", (event, d) => {
       tooltip.transition().duration(200).style("opacity", 0.9);
       tooltip
         .html(
-          `${d3.timeFormat("%b %Y")(d.key)}<br/>S&P 500: $${d.value.toFixed(2)}`
+          `${d3.timeFormat("%b %d, %Y")(d.Date)}<br/>S&P 500: $${d.SP500.toFixed(2)}`
         )
         .style("left", event.pageX + 10 + "px")
         .style("top", event.pageY - 28 + "px");
@@ -97,13 +87,13 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
   // Create the line generator
   const line = d3
     .line()
-    .x((d) => xScale(d.key))
-    .y((d) => yScale(d.value));
+    .x((d) => xScale(d.Date))
+    .y((d) => yScale(d.SP500));
 
   // Append the line to the chart
   svg
     .append("path")
-    .datum(monthlyData)
+    .datum(filteredData)
     .attr("fill", "none")
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
