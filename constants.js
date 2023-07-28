@@ -10,9 +10,9 @@ const _2016_selloff_paragraph =
 
 const _2018_crypto_bubble_graphStart = "2018-08";
 const _2018_crypto_bubble_graphEnd = "2019-01";
-const _2018_crypto_bubble_title = "The 2018 Crypto Bubble";
+const _2018_crypto_bubble_title = "The 2018 Slowdown";
 const _2018_crypto_bubble_paragraph =
-  "The 2018 crypto bubble was a period of time in which the price of cryptocurrencies, particularly Bitcoin, experienced a sharp decline in value.";
+  "The S&P 500 dropped in late 2018 due to a combination of factors, including the Federal Reserve raising interest rates, the U.S.-China trade war, and a global economic slowdown.";
 
 const _2020_covid_graphStart = "2020-01";
 const _2020_covid_graphEnd = "2020-08";

@@ -108,7 +108,7 @@ async function init_2022decline_timeline(svg_width, svg_height, svg_id) {
       connector: { end: "arrow" },
       note: {
         label:
-          "The effect of the covid-19 pandemic has faded but factors such as inflation and the recent russian-ukrainian war causes uncertainty in the markets.",
+          "The effect of the Covid-19 pandemic has faded but factors such as inflation and the recent Russian-Ukrainian war causes uncertainty in the markets.",
         title: "Inflation and supply chain difficulties",
         wrap: 300,
       },
