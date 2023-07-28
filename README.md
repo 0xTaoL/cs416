@@ -3,5 +3,5 @@ simple data narrative of sp500 performance over the past decade
 
 
 todo
-- add annotations
 - update copy
+- make it so that the current slide is indicated in the navbar
