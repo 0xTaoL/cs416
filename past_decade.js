@@ -4,12 +4,12 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
   const margin = { top: 20, right: 30, bottom: 30, left: 60 };
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;
-  // Retrieve data
+
   const filePath = "main/sp500_index.csv";
   let data = await d3.csv(
     `https://raw.githubusercontent.com/0xTaoL/cs416/${filePath}`
   );
-  // Parse the data into appropriate types
+
   const parseDate = d3.utcParse("%Y-%m-%d");
   data.forEach((d) => {
     d.Date = parseDate(d.Date);
@@ -26,7 +26,6 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
     }
   );
 
-  // Create the SVG element
   const svg = d3
     .select(svg_id)
     .append("g")
@@ -34,7 +33,6 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
     .attr("height", height)
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  // Create scales and axes
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(monthlyData, (d) => d.key))
@@ -55,14 +53,12 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
 
   svg.append("g").call(yAxis);
 
-  // Create tooltip
   const tooltip = d3
     .select("body")
     .append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  // Append the data points
   svg
     .selectAll(".datapoint")
     .data(monthlyData)
@@ -86,13 +82,11 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
       tooltip.transition().duration(500).style("opacity", 0);
     });
 
-  // Create the line generator
   const line = d3
     .line()
     .x((d) => xScale(d.key))
     .y((d) => yScale(d.value));
 
-  // Append the line to the chart
   svg
     .append("path")
     .datum(monthlyData)
@@ -100,6 +94,4 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
-
-    //annotations referencing the bottoms of each slide
 }

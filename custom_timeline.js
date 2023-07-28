@@ -6,12 +6,12 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
   const margin = { top: 20, right: 30, bottom: 30, left: 60 };
   const chartWidth = width - margin.left - margin.right;
   const chartHeight = height - margin.top - margin.bottom;
-  // Retrieve data
+
   const filePath = "main/sp500_index.csv";
   let data = await d3.csv(
     `https://raw.githubusercontent.com/0xTaoL/cs416/${filePath}`
   );
-  // Parse the data into appropriate types
+
   const parseDate = d3.utcParse("%Y-%m-%d");
   data.forEach((d) => {
     d.Date = parseDate(d.Date);
@@ -24,7 +24,6 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
     (d) => d.Date >= convertedStart && d.Date <= convertedEnd
   );
 
-  // Create the SVG element
   const svg = d3
     .select(svg_id)
     .append("g")
@@ -32,7 +31,6 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
     .attr("height", height)
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  // Create scales and axes
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(filteredData, (d) => d.Date))
@@ -53,14 +51,12 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
 
   svg.append("g").call(yAxis);
 
-  // Create tooltip
   const tooltip = d3
     .select("body")
     .append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  // Append the data points
   svg
     .selectAll(".datapoint")
     .data(filteredData)
@@ -84,13 +80,11 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
       tooltip.transition().duration(500).style("opacity", 0);
     });
 
-  // Create the line generator
   const line = d3
     .line()
     .x((d) => xScale(d.Date))
     .y((d) => yScale(d.SP500));
 
-  // Append the line to the chart
   svg
     .append("path")
     .datum(filteredData)

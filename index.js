@@ -103,7 +103,6 @@ function updateChart(svg_id, slide_id) {
 }
 
 function getLastDayOfMonth(yyyy, mm) {
-  // Use the following month and day 0 to get the last day of the given month
   const nextMonth = parseInt(mm, 10) + 1;
   const lastDayOfMonth = new Date(yyyy, nextMonth, 0).getDate();
   return lastDayOfMonth;
@@ -118,17 +117,14 @@ function convertToYYYYMMDDLastDay(yyyy_mm) {
 document.addEventListener("DOMContentLoaded", function () {
   const navbarLinks = document.querySelectorAll(".navbar a");
 
-  // Add 'active' class to the first link by default
   navbarLinks[0].classList.add("active");
 
   navbarLinks.forEach(function (link) {
     link.addEventListener("click", function (event) {
-      // Remove the 'active' class from all elements first
       navbarLinks.forEach(function (link) {
         link.classList.remove("active");
       });
 
-      // Add the 'active' class to the clicked element
       event.target.classList.add("active");
     });
   });
