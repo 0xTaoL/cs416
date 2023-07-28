@@ -100,4 +100,6 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+    //annotations referencing the bottoms of each slide
 }

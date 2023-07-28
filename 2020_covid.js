@@ -107,4 +107,41 @@ async function init_2020covid_timeline(svg_width, svg_height, svg_id) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+    //annotation for march 2020
+  const annotations = [
+    {
+      type: d3.annotationCalloutElbow,
+      connector: { end: "arrow" },
+      note: {
+        label: "Countries around the world started to lockdown in March 2020.",
+        title: "Covid-19 spread globally",
+        wrap: 300,
+      },
+      x: 220,
+      y: 250,
+      dx: 50,
+      dy: 20,
+    },
+    {
+      type: d3.annotationCalloutElbow,
+      connector: { end: "arrow" },
+      note: {
+        label: "Government assistance to citizens and businesses allowed the economy to recover rapidly.",
+        title: "Government response to Covid-19",
+        wrap: 400,
+      },
+      x: 560,
+      y: 400,
+      dx: 50,
+      dy: 20,
+    },
+  ].map(function (d) {
+    d.color = "#E8336D";
+    return d;
+  });
+
+  const makeAnnotations = d3.annotation().annotations(annotations);
+
+  svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 }

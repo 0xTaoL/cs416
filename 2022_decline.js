@@ -107,4 +107,29 @@ async function init_2022decline_timeline(svg_width, svg_height, svg_id) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+    //annotation for october 2022
+  const annotations = [
+    {
+      type: d3.annotationCalloutElbow,
+      connector: { end: "arrow" },
+      note: {
+        label:
+          "The effect of the covid-19 pandemic has faded but factors such as inflation and the recent russian-ukrainian war causes uncertainty in the markets.",
+        title: "Inflation and supply chain difficulties",
+        wrap: 300,
+      },
+      x: 380,
+      y: 310,
+      dx: 50,
+      dy: -90,
+    },
+  ].map(function (d) {
+    d.color = "#E8336D";
+    return d;
+  });
+
+  const makeAnnotations = d3.annotation().annotations(annotations);
+
+  svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 }

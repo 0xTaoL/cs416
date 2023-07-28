@@ -107,4 +107,29 @@ async function init_2018crypto_timeline(svg_width, svg_height, svg_id) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+// annotation for decmber 2018
+  const annotations = [
+    {
+      type: d3.annotationCalloutElbow,
+      connector: { end: "arrow" },
+      note: {
+        label:
+          "Donald Trump's trade war with China and the global economic slowdown combined with rising interest rates caused the stock market to fall in late 2018.",
+        title: "Trade war and global economic slowdown",
+        wrap: 300,
+      },
+      x: 500,
+      y: 250,
+      dx: -150,
+      dy: 20,
+    },
+  ].map(function (d) {
+    d.color = "#E8336D";
+    return d;
+  });
+
+  const makeAnnotations = d3.annotation().annotations(annotations);
+
+  svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 }

@@ -107,4 +107,44 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+    //annotation for september 2015 and feb 2016
+    //annotation for the user to hover over datapoints and user the date selector
+  const annotations = [
+    {
+      type: d3.annotationCalloutElbow,
+      connector: { end: "arrow" },
+      note: {
+        label:
+          "The chinese stock market popped on June 12th, 2015, causing a global selloff causing ripple effects in the US market",
+        title: "Chinese stock market bubble",
+        wrap: 300,
+      },
+      x: 200,
+      y: 200,
+      dx: 130,
+      dy: 150,
+    },
+    {
+      type: d3.annotationCalloutElbow,
+      connector: { end: "arrow" },
+      note: {
+        label:
+          "The federal reserve raised its benchmark interest rates and oil prices fell causing energy stocks to fall",
+        title: "Rising interest rates and oil prices",
+        wrap: 300,
+      },
+      x: 600,
+      y: 300,
+      dx: 10,
+      dy: -210,
+    }
+  ].map(function (d) {
+    d.color = "#E8336D";
+    return d;
+  });
+
+  const makeAnnotations = d3.annotation().annotations(annotations);
+
+  svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
 }
