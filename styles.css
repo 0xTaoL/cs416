@@ -32,6 +32,10 @@
   background-color: red;
 }
 
+.navbar .active {
+  background-color: red; 
+}
+
 .navbar li:nth-child(5) a:hover {
   background-color: blue;
 }
