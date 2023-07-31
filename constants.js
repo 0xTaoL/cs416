@@ -18,7 +18,7 @@ const _2020_covid_graphStart = "2020-01";
 const _2020_covid_graphEnd = "2020-08";
 const _2020_covid_title = "The 2020 COVID-19 Crash";
 const _2020_covid_paragraph =
-  "The 2020 crash occurred because investors were worried about the impact of the COVID-19 coronavirus pandemic. The uncertainty over the danger of the virus, plus the shuttering of many businesses and industries as states implemented shutdown orders, damaged many sectors of the economy. The drop was caused by unbridled global fears about the spread of the coronavirus, oil price drops, and the possibility of a 2020 recession. Although the 2020 market crash was dramatic, it didn't last. The stock market experienced a surprising recovery, even as many areas of the U.S. economy continued to experience trouble";
+  "The 2020 crash occurred because investors were worried about the impact of the COVID-19 coronavirus pandemic. The uncertainty over the danger of the virus, plus the shuttering of many businesses and industries as states implemented shutdown orders, damaged many sectors of the economy. The drop was caused by unbridled global fears about the spread of the coronavirus, oil price drops, and the possibility of a 2020 recession. Although the 2020 market crash was dramatic, it didn't last. The stock market experienced a surprising recovery, even as many areas of the U.S. economy continued to experience trouble.";
 
 const _2022_decline_graphStart = "2021-12";
 const _2022_decline_graphEnd = "2023-02";
