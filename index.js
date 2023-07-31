@@ -114,6 +114,7 @@ function convertToYYYYMMDDLastDay(yyyy_mm) {
   return `${yyyy_mm}-${lastDay.toString().padStart(2, "0")}`;
 }
 
+//nav bar slide selected slide
 document.addEventListener("DOMContentLoaded", function () {
   const navbarLinks = document.querySelectorAll(".navbar a");
 

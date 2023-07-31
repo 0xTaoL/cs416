@@ -108,7 +108,7 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
       connector: { end: "arrow" },
       note: {
         label:
-          "The chinese stock market popped on June 12th, 2015, causing a global selloff causing ripple effects in the US market",
+          "The chinese stock market popped on June 12th, 2015, causing a global selloff causing ripple effects in the US market.",
         title: "Chinese stock market bubble",
         wrap: 300,
       },
@@ -122,7 +122,7 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
       connector: { end: "arrow" },
       note: {
         label:
-          "The federal reserve raised its benchmark interest rates and oil prices fell causing energy stocks to fall",
+          "The federal reserve raised its benchmark interest rates and oil prices fell causing energy stocks to fall.",
         title: "Rising interest rates and oil prices",
         wrap: 300,
       },
