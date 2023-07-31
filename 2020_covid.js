@@ -155,5 +155,5 @@ async function init_2020covid_timeline(svg_width, svg_height, svg_id) {
     .attr("x", 0 - height / 2)
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .text("S&P 500 Price (USD)");
+    .text("Average S&P 500 Price (USD)");
 }
