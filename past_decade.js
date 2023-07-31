@@ -94,4 +94,22 @@ async function init_full_timeline(svg_width, svg_height, svg_id, start, end) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+  // Add x-axis label
+  svg
+    .append("text")
+    .attr("x", width / 2)
+    .attr("y", chartHeight + margin.bottom)
+    .style("text-anchor", "middle")
+    .text("Date");
+
+  // Add y-axis label
+  svg
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x", 0 - height / 2)
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("S&P 500 Price (USD)");
 }

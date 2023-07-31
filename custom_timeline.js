@@ -71,7 +71,9 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
       tooltip.transition().duration(200).style("opacity", 0.9);
       tooltip
         .html(
-          `${d3.timeFormat("%b %d, %Y")(d.Date)}<br/>S&P 500: $${d.SP500.toFixed(2)}`
+          `${d3.timeFormat("%b %d, %Y")(
+            d.Date
+          )}<br/>S&P 500: $${d.SP500.toFixed(2)}`
         )
         .style("left", event.pageX + 10 + "px")
         .style("top", event.pageY - 28 + "px");
@@ -92,4 +94,22 @@ async function init_custom_timeline(svg_width, svg_height, svg_id) {
     .attr("stroke", "steelblue")
     .attr("stroke-width", 2)
     .attr("d", line);
+
+  // Add x-axis label
+  svg
+    .append("text")
+    .attr("x", width / 2)
+    .attr("y", chartHeight + margin.bottom)
+    .style("text-anchor", "middle")
+    .text("Date");
+
+  // Add y-axis label
+  svg
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x", 0 - height / 2)
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("S&P 500 Price (USD)");
 }

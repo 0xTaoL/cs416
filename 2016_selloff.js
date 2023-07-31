@@ -130,7 +130,7 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
       y: 300,
       dx: 10,
       dy: -210,
-    }
+    },
   ].map(function (d) {
     d.color = "#E8336D";
     return d;
@@ -139,4 +139,22 @@ async function init_2016selloff_timeline(svg_width, svg_height, svg_id) {
   const makeAnnotations = d3.annotation().annotations(annotations);
 
   svg.append("g").attr("class", "annotation-group").call(makeAnnotations);
+
+  // Add x-axis label
+  svg
+    .append("text")
+    .attr("x", width / 2)
+    .attr("y", chartHeight + margin.bottom)
+    .style("text-anchor", "middle")
+    .text("Date");
+
+  // Add y-axis label
+  svg
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x", 0 - height / 2)
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("S&P 500 Price (USD)");
 }
